@@ -4,8 +4,9 @@ source 'https://rubygems.org'
 gemspec
 
 gem 'sinatra'
-gem 'faker'
+gem 'mp3info'
 
 group :development do
   gem 'pry'
+  gem 'faker'
 end

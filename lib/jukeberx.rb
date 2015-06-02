@@ -22,15 +22,30 @@ module Jukeberx
     end
 
     get '/artists' do
-      settings.library.list_artists.to_json
+      if params['name']
+        name = params['name']
+        settings.library.match_artists(name).to_json
+      else
+        settings.library.list_artists.to_json
+      end
     end
 
     get '/albums' do
-      settings.library.list_albums.to_json
+      if params['name']
+        name = params['name']
+        settings.library.match_albums(name).to_json
+      else
+        settings.library.list_albums.to_json
+      end
     end
 
     get '/titles' do
-      settings.library.list_titles.to_json
+      if params['name']
+        name = params['name']
+        settings.library.match_titles(name).to_json
+      else
+        settings.library.list_titles.to_json
+      end
     end
 
     post '/play' do

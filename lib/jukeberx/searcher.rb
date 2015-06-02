@@ -16,11 +16,11 @@ module Jukeberx
     end
 
     def match_albums(name)
-      @songs.select { |song| song.albums =~ /#{name}/i  }
+      @songs.select { |song| song.album =~ /#{name}/i  }
     end
 
     def match_titles(name)
-      @songs.select { |song| song.titles =~ /#{name}/i  }
+      @songs.select { |song| song.title =~ /#{name}/i  }
     end
 
     def list_artists

@@ -11,6 +11,35 @@ module Jukeberx
       @songs.each { |x| yield(x) }
     end
 
+    def match_artists(name)
+      @songs.select { |song| song.artist =~ /#{name}/i  }
+    end
+
+    def match_albums(name)
+      @songs.select { |song| song.albums =~ /#{name}/i  }
+    end
+
+    def match_titles(name)
+      @songs.select { |song| song.titles =~ /#{name}/i  }
+    end
+
+    def list_artists
+      @songs.map { |song| song.artist }.uniq
+    end
+
+    def list_albums
+      @songs.map { |song| song.album }.uniq
+    end
+
+    def list_titles
+      @songs.map { |song| song.title }.uniq
+    end
+
+    # def list_property(name)
+    #   @songs.map { |song| song.send(name) }.uniq
+    # end
+
+    protected
     def get_mp3s(dir)
       files = Dir.glob(File.join(dir, '*/*.mp3'))
       files.each_with_index do |mp3_file, id|

@@ -14,13 +14,13 @@ module Jukeberx
       spawn("afplay \"#{@filename}\"")
     end
 
-    def as_json
+    def to_json
       {
        id:      self.id,
        artist:  self.artist,
        album:   self.album,
        title:   self.title
-      }
+      }.to_json
     end
   end
 end

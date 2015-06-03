@@ -12,15 +12,15 @@ module Jukeberx
     end
 
     def match_artists(name)
-      @songs.select { |song| song.artist =~ /#{name}/i  }.map(&:as_json)
+      @songs.select { |song| song.artist =~ /^#{name}$/i  }
     end
 
     def match_albums(name)
-      @songs.select { |song| song.album =~ /#{name}/i  }.map(&:as_json)
+      @songs.select { |song| song.album =~ /#{name}/i  }
     end
 
     def match_titles(name)
-      @songs.select { |song| song.title =~ /#{name}/i  }.map(&:as_json)
+      @songs.select { |song| song.title =~ /#{name}/i  }
     end
 
     def list_artists

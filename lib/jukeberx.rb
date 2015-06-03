@@ -55,7 +55,7 @@ module Jukeberx
 
     post '/play/:id' do
       song = settings.library.find { |x| x.id == params['id'].to_i }
-      set :playing, song.play
+      song.play
       "'#{song.artist} - #{song.title}' is now playing!"
     end
 

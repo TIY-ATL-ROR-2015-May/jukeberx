@@ -11,7 +11,7 @@ module Jukeberx
     end
 
     def play
-      spawn("afplay #{@filename}")
+      spawn("afplay \"#{@filename}\"")
     end
 
     def as_json

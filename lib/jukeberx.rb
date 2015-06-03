@@ -11,7 +11,9 @@ MUSIC_DIR = '/Users/brit/Music/downloads'
 
 module Jukeberx
   class App < Sinatra::Base
-    set :library, Jukeberx::Searcher.new(MUSIC_DIR)
+    set :library, Searcher.new(MUSIC_DIR)
+    set :playing, nil
+    set :queue, []
     enable :logging
 
     get '/' do
@@ -22,37 +24,41 @@ module Jukeberx
     end
 
     get '/artists' do
+      content_type :json
       if params['name']
         name = params['name']
         settings.library.match_artists(name).to_json
       else
-        settings.library.list_artists.to_json
+        settings.library.list_artists.compact.to_json
       end
     end
 
     get '/albums' do
+      content_type :json
       if params['name']
         name = params['name']
         settings.library.match_albums(name).to_json
       else
-        settings.library.list_albums.to_json
+        settings.library.list_albums.compact.to_json
       end
     end
 
     get '/titles' do
+      content_type :json
       if params['name']
         name = params['name']
         settings.library.match_titles(name).to_json
       else
-        settings.library.list_titles.to_json
+        settings.library.list_titles.compact.to_json
       end
     end
 
-    post '/play' do
-      
+    post '/play/:id' do
+      song = settings.library.find { |x| x.id == params['id'].to_i }
+      set :playing, song.play
+      "'#{song.artist} - #{song.title}' is now playing!"
     end
 
     run! if app_file == $0
   end
 end
-

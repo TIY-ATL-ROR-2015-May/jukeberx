@@ -3,7 +3,6 @@ module Jukeberx
     attr_reader :id, :filename, :artist, :album, :title
 
     def initialize(id, file, tag)
-      @pid = nil
       @id = id
       @filename = file
       @artist = tag.artist
@@ -12,7 +11,16 @@ module Jukeberx
     end
 
     def play
-      @pid = spawn("afplay #{@filename}")
+      spawn("afplay #{@filename}")
+    end
+
+    def as_json
+      {
+       id:      self.id,
+       artist:  self.artist,
+       album:   self.album,
+       title:   self.title
+      }
     end
   end
 end

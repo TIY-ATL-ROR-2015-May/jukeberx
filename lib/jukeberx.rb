@@ -17,10 +17,8 @@ module Jukeberx
     enable :logging
 
     get '/' do
-      "Do you know how to use the API? Try these routes!
-            '/artists',
-            '/albums',
-            '/titles'"
+      @songs = settings.library.match_artists(params['name'])
+      erb :index
     end
 
     get '/artists' do

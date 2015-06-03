@@ -1,0 +1,15 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Example Page</title>
+  </head>
+  <body>
+    <h1>Example Ordered List: Songs (<%= @songs.length %>)</h1>
+
+    <ul>
+      <% @songs.each do |song| %>
+        <li> <%= song[:artist] %> - <%= song[:title] %> </li>
+      <% end %>
+    </ul>
+  </body>
+</html>

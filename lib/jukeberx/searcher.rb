@@ -12,7 +12,7 @@ module Jukeberx
     end
 
     def match_artists(name)
-      @songs.select { |song| song.artist =~ /^#{name}$/i  }
+      @songs.select { |song| song.artist =~ /#{name}/i  }
     end
 
     def match_albums(name)

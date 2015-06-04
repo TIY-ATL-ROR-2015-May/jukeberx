@@ -2,18 +2,14 @@
 <html>
   <head>
     <title>Example Page</title>
+    <link rel="stylesheet" href="application.css">
   </head>
   <body>
     <h1>Example Ordered List: Songs (<%= @songs.length %>)</h1>
 
     <ul>
       <% @songs.each do |song| %>
-      <li>
-        <%= song[:artist] %> - <%= song[:title] %>
-        <form action="/play/<%= song[:id] %>" method="post" class="play-song">
-          <button type="submit" value="Play">Play the damn thing!</button>
-        </form>
-      </li>
+        <%= erb :song, locals: { song: song } %>
       <% end %>
     </ul>
   </body>
